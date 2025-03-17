@@ -11,16 +11,12 @@ public:
 
         std::sort(nums.begin(), nums.end());
 
-        for(int i = 0; i < nums.size(); i++) {
-            if(numCounts.find(nums[i]) == numCounts.end()) {
-                numCounts[nums[i]] = 1;
-            } else {
-                numCounts[nums[i]] += 1;
-            }
+        for(int num : nums) {
+            numCounts[num]++;
         }
 
-        for(int i = 0; i < numCounts.size(); i++) {
-            if(numCounts[i]%2 != 0) return false;
+        for(auto& entry: numCounts) {
+            if(entry.second%2 != 0) return false;
         }
         return true;
     }
