@@ -1,24 +1,13 @@
-#include <algorithm>
+#include <bitset>
 #include <vector>
-#include <unordered_map>
 #include <iostream>
 
 class Solution {
 public:
     bool divideArray(std::vector<int>& nums) {
-        std::unordered_map<int, int> numCounts;
-        if(nums.size()%2 != 0) return false;
-
-        std::sort(nums.begin(), nums.end());
-
-        for(int num : nums) {
-            numCounts[num]++;
-        }
-
-        for(auto& entry: numCounts) {
-            if(entry.second%2 != 0) return false;
-        }
-        return true;
+        std::bitset<501> parity = 0;
+        for(int x: nums) parity.flip(x);
+        return parity.none();
     }
 };
 
